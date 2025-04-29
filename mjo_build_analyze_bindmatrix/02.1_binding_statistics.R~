@@ -1,0 +1,89 @@
+
+
+################
+# Ligand stats #
+################
+
+statistics = list(
+    ligand = list(),
+    target = list(),
+    interaction = list())
+
+zincids <- readr::read_csv(
+    file = "../../databases/ZINC_instock/all_ligands.csv",
+    col_names = "zincid",
+    show_col_types = FALSE)
+
+scores <- arrow::read_parquet("product/donk_v1_scores.parquet")
+
+statistics$ligand$n_total <- nrow(zincids)
+statistics$ligand$n_distinct <- zincids |>
+    dplyr::distinct(zincid) |>
+    nrow()
+
+statistics$ligand$n_energy <- scores |>
+    dplyr::distinct(zincid) |>
+    nrow()
+
+statistics$ligand$mean_energy <-
+    mean(scores$energy)       
+
+statistics$ligand$median_energy <-
+    median(scores$energy)
+
+
+ligand_bind_counts <- scores |>
+    dplyr::filter(binds == 1) |>
+    dplyr::count(zincid)
+
+ligand_bind_counts_counts <- ligand_bind_counts |>
+    dplyr::rename(n_active = n) |>
+    dplyr::count(n_active)
+    
+
+
+plot <- ggplot2::ggplot(
+  data = ligand_bind_counts_counts) +
+  ggplot2::theme_bw() +
+  ggplot2::geom_jitter(
+    mapping = ggplot2::aes(
+      x = n_active,
+      y = n),
+    alpha = 0.4,
+    size = 0.8,
+    shape = 16,
+    width = 0.05,
+    height = 0.05) +
+  ggplot2::scale_x_log10(
+    "Active at N Targets",
+    breaks = c(1, 3, 10, 30, 100, 300, 1000, 3000)) +
+  ggplot2::scale_y_log10(
+    "Number of Ligands",
+    breaks = c(1, 3, 10, 30, 100, 300, 1000, 3000, 10000))
+
+ggplot2::ggsave(
+    filename = "product/n_active_vs_size_20240924.pdf",
+    plot = plot,
+    width = 5,
+    height = 4,
+    useDingbats = FALSE)
+
+statistics$ligand$n_bind <- ligand_bind_counts |>
+    nrow()
+
+statistics$ligand$n_bind_unique <- ligand_bind_counts |>
+    dplyr::filter(n == 1) |>
+    nrow()
+
+statistics$ligand$mean_bind <- ligand_bind_counts |>
+    dplyr::summarize(
+        mean_bind = mean(n)) |>
+    dplyr::pull(mean_bind)
+
+statistics$ligand$median_bind <- ligand_bind_counts |>
+    dplyr::summarize(
+        median_bind = median(n)) |>
+    dplyr::pull(median_bind)
+
+
+

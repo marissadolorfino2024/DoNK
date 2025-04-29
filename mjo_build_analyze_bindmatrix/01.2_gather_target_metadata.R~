@@ -1,0 +1,42 @@
+
+
+target_metadata <- data.frame(
+    target_id = arrow::open_dataset(
+        sources = "product/donk_v1_binds_wide.parquet")$schema$names) |>
+    dplyr::filter(target_id != "zincid")
+                                                       
+
+target_metadata <- target_metadata |>
+    tidyr::separate_wider_regex(
+        cols = target_id,
+        patterns = c(
+            scaffold_info = ".*",
+            "_prepped_formatted_",
+            design_info = ".*",
+            "_energies_",
+            design_radius = "[0-9]+",
+            "angdesign"),
+        cols_remove = FALSE) |>
+    dplyr::mutate(
+        design_radius = as.numeric(design_radius))
+
+target_metadata <- target_metadata |>
+    dplyr::mutate(
+        scaffold_class = dplyr::case_when(
+            scaffold_info == "1a28_progest" ~ "NHR",
+            scaffold_info == "1a52_estro" ~ "NHR",
+            scaffold_info == "2am9_andro" ~ "NHR",
+            scaffold_info == "3gws_thyr" ~ "NHR",
+            scaffold_info == "3kfc_lxr" ~ "NHR",            
+            scaffold_info == "" ~ "GPCR",
+            
+                    5c1m_mu 195
+                 5wiu_dopd4 200
+                   6kpc_CB2 200
+                   6me5_MT1 199
+                   7jur_MEK 200
+                   7qpi_VDR 200
+
+        
+
+

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# 8 probes are used (based on mix MD probes)
+
+# phenol
+C1=CC=C(C=C1)O
+
+# benzene
+C1=CC=CC=C1
+
+# cyclohexane
+C1CCCCC1
+
+# 2-propanol
+[2H]C([2H])([2H])C(C([2H])([2H])[2H])O
+
+# N-methylacetamide
+CC(=O)NC
+
+# pyrimidine
+C1=CN=CN=C1
+
+# 1H-imidazole
+C1=CN=CN1
+
+# acetic acid
+CC(=O)O
+
