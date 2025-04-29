@@ -8,13 +8,9 @@ The DoNK_v1 data can be found on greatlakes here: `/nfs/turbo/umms-maom/MPProjec
 
 Steps for DoNK protein design: 
   - RFDiffusion for protein backbone diversity: `RFDiffusion_scripts/`
-    - 
   - ProteinMPNN for sequence design: `MPNN_sequence_design_scripts`
-    -
   - AlphaFold2 for sequence --> structure: `AlphaFold2_scripts`
-    -
   - Sphere generation via DiffDock: `DiffDock_SphGen_scripts`
-    -
 
 ## Docking via DOCK3.8 workflow:
 
@@ -26,16 +22,13 @@ Steps for DoNK docking:
   - Modify docking parameters via the INDOCK file: `DOCK38_scripts/modify_indock.sh`
   - Dock a dataset of small molecule ligands to each receptor: `DOCK38_scripts/batchdock_tranch.sh`
   - Analyze docking data: `DOCK38_analysis_scripts`
-    -
 
 ## ML on bioactivity fingerprints workflow:
 
 Steps for DoNK fingerprint generation and ML:
   - Generate ECFP4 chemical fingerprints for ligands: `bioactivity_ML_scripts/ECFP4.py`
   - Generate receptor by ligand bioactivity matrix: `mjo_build_analyze_bindmatrix`
-    -
   - Obtain ligand and receptor bioactivity fingerprints from the bioactivity matrix: `mjo_build_analyze_bindmatrix`
-    -
   - Perform analysis on fingerprints
     - Dimensionality reduction of fingerprints
     - Clustering of embedding space
