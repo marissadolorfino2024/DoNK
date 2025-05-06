@@ -3,7 +3,7 @@
 <img width="870" alt="image" src="https://github.com/user-attachments/assets/f89eae18-6f2f-4aef-bdd7-713373aed5bb" />
 
 
-this repository contains scripts for protein generation, docking, and analysis relating to the generation, analysis, and use of DoNK data.
+This repository contains scripts for protein generation, docking, and analysis relating to the generation, analysis, and use of DoNK data.
 
 ## Overview
 Large-scale synthetic datasets can be used as a source of evidence to complement complex experimental data to train foundation models. The Docking to Novel pocKets project aims to develop representations of small molecules based on their in-silico activity profiles across binding sites in designed receptors. These representations can be used to efficiently develop structure-activity relationships, navigate ultra-large scale make-on-demand chemical spaces, and facilitate training large-scale chemical foundation models. The development of DoNK involves three stages 1) Simulate diverse, native-like binding sites using state-of-the-art protein structure generation, 2) use physics based docking to simulate the binding mode and binding affinity of small molecules into the generated binding sites, and 3) use deep-learning based variational transcoder models to predict docking-based activity profiles across designed receptors with a meaningful latent space. To use the DoNK model, the trained encoder can be used to embed small molecules into a latent space where similar embeddings represent similar predicted docking-based bioactivity profiles, or the DoNK dataset can be used directly as a foundation model training task.
