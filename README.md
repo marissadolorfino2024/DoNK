@@ -1,8 +1,12 @@
-# DoNK Scripts: this repository contains scripts for protein generation, docking, and analysis relating to the generation, analysis, and use of DoNK data.
+# Docking to Novel Pockets (DoNK)
 
-The directory corresponding to this repo on greatlakes is: `/nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/DoNK_scripts`.
+<img width="870" alt="image" src="https://github.com/user-attachments/assets/f89eae18-6f2f-4aef-bdd7-713373aed5bb" />
 
-The DoNK_v1 data can be found on greatlakes here: `/nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/donk_v1`.
+
+This repository contains scripts for protein generation, docking, and analysis relating to the generation, analysis, and use of DoNK data.
+
+## Overview
+Large-scale synthetic datasets can be used as a source of evidence to complement complex experimental data to train foundation models. The Docking to Novel pocKets project aims to develop representations of small molecules based on their in-silico activity profiles across binding sites in designed receptors. These representations can be used to efficiently develop structure-activity relationships, navigate ultra-large scale make-on-demand chemical spaces, and facilitate training large-scale chemical foundation models. The development of DoNK involves three stages 1) Simulate diverse, native-like binding sites using state-of-the-art protein structure generation, 2) use physics based docking to simulate the binding mode and binding affinity of small molecules into the generated binding sites, and 3) use deep-learning based variational transcoder models to predict docking-based activity profiles across designed receptors with a meaningful latent space. To use the DoNK model, the trained encoder can be used to embed small molecules into a latent space where similar embeddings represent similar predicted docking-based bioactivity profiles, or the DoNK dataset can be used directly as a foundation model training task.
 
 ## Protein Design workflow: 
 
@@ -34,3 +38,10 @@ Steps for DoNK fingerprint generation and ML:
     - Clustering of embedding space
   - Train models (graph encoder-decoders) to transform graph representations of small molecules into bioactivity fingerprints: `bioactivity_ML_scripts/ml_utils.py` and `bioactivity_ML_scripts/data_serial_train.py`
   - Use latent space of trained models to predict molecular properties, bioactivity, etc
+
+## Data Availability:
+The directory corresponding to this repo on greatlakes is: `/nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/DoNK_scripts`.
+
+The DoNK_v1 data can be found on greatlakes here: `/nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/donk_v1` and will be released open source soon.
+
+
