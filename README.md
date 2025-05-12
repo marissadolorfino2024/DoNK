@@ -12,7 +12,12 @@ Large-scale synthetic datasets can be used as a source of evidence to complement
 
 Steps for DoNK protein design: 
   - RFDiffusion for protein backbone diversity: `RFDiffusion_scripts/`
+    - to prepare PDB files for RFDiffusion, run the `reformat_pdbs.py` for each PDB file
+    - for each reformatted PDB file, run the `pdb2fasta.py` script to generate a fasta file corresponding to each PDB file
+    - run the `sequence_contigs.py` script to prepare RFDiffusion contigs
+    - run the `partialdiffusion.sh` script to submit a SLURM array job that runs RFDiffusion partial diffusion on each PDB file
   - ProteinMPNN for sequence design: `MPNN_sequence_design_scripts`
+    - run the `sequence_design_contigs.py` script to generate contigs that determine which residues in a PDB file are designable. The radius around the binding pocket that defines designable residues is specified as an argument to the script
   - AlphaFold2 for sequence --> structure: `AlphaFold2_scripts`
   - Sphere generation via DiffDock: `DiffDock_SphGen_scripts`
 
@@ -40,7 +45,7 @@ Steps for DoNK fingerprint generation and ML:
   - Use latent space of trained models to predict molecular properties, bioactivity, etc
 
 ## Data Availability:
-The directory corresponding to this repo on greatlakes is: `/nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/DoNK_scripts`.
+The directory corresponding to this repo on greatlakes is: `/nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/DoNK`.
 
 The DoNK_v1 data can be found on greatlakes here: `/nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/donk_v1` and will be released open source soon.
 
