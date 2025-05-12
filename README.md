@@ -11,13 +11,17 @@ Large-scale synthetic datasets can be used as a source of evidence to complement
 ## Protein Design workflow: 
 
 Steps for DoNK protein design: 
+  - clone the RFDiffusion git repo and follow steps to set up conda env 
   - RFDiffusion for protein backbone diversity: `RFDiffusion_scripts/`
     - to prepare PDB files for RFDiffusion, run the `reformat_pdbs.py` for each PDB file
     - for each reformatted PDB file, run the `pdb2fasta.py` script to generate a fasta file corresponding to each PDB file
     - run the `sequence_contigs.py` script to prepare RFDiffusion contigs
     - run the `partialdiffusion.sh` script to submit a SLURM array job that runs RFDiffusion partial diffusion on each PDB file
+  - clone the ProteinMPNN git repo and follow steps to set up conda env
   - ProteinMPNN for sequence design: `MPNN_sequence_design_scripts`
     - run the `sequence_design_contigs.py` script to generate contigs that determine which residues in a PDB file are designable. The radius around the binding pocket that defines designable residues is specified as an argument to the script
+    - `hydro_pocket_design.sh` and `polar_pocket_design.sh` run sequence designing allowing only hydrophobic or polar residues. Either of these scripts can be modified for more relaxed or stringent design by changing what amino acids are omitted from design (via the flag `--omit_AAs`
+  - clone the colabfold git repository and follow steps to set up conda env
   - AlphaFold2 for sequence --> structure: `AlphaFold2_scripts`
   - Sphere generation via DiffDock: `DiffDock_SphGen_scripts`
 
