@@ -1,4 +1,4 @@
-#!/bin/usr/python
+#!/bin/python
 
 import sys
 import numpy as np
@@ -9,10 +9,13 @@ import glob
 
 # path to directory containing scaffold pdbs
 path_to_pdbs = sys.argv[1]
+
 # path to directory containing RFdiffusion backbones
 path_to_designs = sys.argv[2]
+
 # distance threshold
 x = float(sys.argv[3])
+
 regex = path_to_pdbs + '*.pdb'
 regex2 = path_to_designs + '*_0001.pdb'
 
