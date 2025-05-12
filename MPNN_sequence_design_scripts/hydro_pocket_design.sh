@@ -1,16 +1,18 @@
 #!/bin/bash
+
+## fill in SBATCH 
   
-#SBATCH --job-name=mpnn_hydro
-#SBATCH --account=maom99
+#SBATCH --job-name=
+#SBATCH --account=
 #SBATCH --partition=standard
 #SBATCH --cpus-per-task=5
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem-per-cpu=20GB
-#SBATCH --time=70:00:00
-#SBATCH --output=hydro_%A-%a.out
-#SBATCH --error=hydro_%A-%a.err
-#SBATCH --array=1-930
+#SBATCH --time=
+#SBATCH --output=
+#SBATCH --error=
+#SBATCH --array=
 
 # script to design binding pockets of protein receptors. pdb files are specified in tasks.txt and residues to design are specified in mpnn_contigs.txt
 # designs specifically hydrophobic pockets
