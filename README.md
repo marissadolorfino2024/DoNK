@@ -23,7 +23,11 @@ Steps for DoNK protein design:
     - `hydro_pocket_design.sh` and `polar_pocket_design.sh` run sequence designing allowing only hydrophobic or polar residues. Either of these scripts can be modified for more relaxed or stringent design by changing what amino acids are omitted from design (via the flag `--omit_AAs`)
   - clone the colabfold git repository and follow steps to set up conda env
   - AlphaFold2 for sequence --> structure: `AlphaFold2_scripts`
+    - run the `sep_fastas.sh` script, which calls `get_designed_fastas.py`, to separate outputs from ProteinMPNN into individual fasta files
+    - run the `batch_colab.sh` script to submit a SLURM array job to fold the sequences
+    - the `relax_AF_folds.sh` script can be run to relax structures via Rosetta (this step was not done for donk_v1)
   - Sphere generation via DiffDock: `DiffDock_SphGen_scripts`
+    - 
 
 ## Docking via DOCK3.8 workflow:
 
