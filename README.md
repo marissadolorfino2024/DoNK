@@ -27,14 +27,17 @@ Steps for DoNK protein design:
     - run the `batch_colab.sh` script to submit a SLURM array job to fold the sequences
     - the `relax_AF_folds.sh` script can be run to relax structures via Rosetta (this step was not done for donk_v1)
   - Sphere generation via DiffDock: `DiffDock_SphGen_scripts`
-    - 
+    - run the `submit_dockruns.sh` script to run DiffDock on each protein, with 8 probes
+    - run the `compile_diffdock_results.sh` script
+    - run `sphgen_10ang.sh` or `sphgen_5ang.sh`, which call `diffdock_sphgen.py`
+    - make the spheres via `batch_make_struct.sh`
 
 ## Docking via DOCK3.8 workflow:
 
 A general DOCK38 tutorial can be found here: [DOCK38 tutorial](https://docs.google.com/document/d/1ZIgTsOP2wmaPRvEQ0r4Q2FTC_R4RNvx7j5CiS3m8rXQ/edit?usp=sharing).
 Steps for DoNK docking:
   - Setup the docking environment by editing and running the following script: `DOCK38_scripts/setup_dock_environment.sh`
-  - Make the structures (generate rec.pdb and xtal-lig.pdb): `DOCK38_scripts/batch_make_struct.sh`
+  - Make the structures (generate rec.pdb and xtal-lig.pdb): `DOCK38_scripts/batch_make_struct.sh`. This step should be done above if using DiffDock for sphere generation
   - Prepare the structures via blastermaster: `DOCK38_scripts/batch_prepare_structure.sh`
   - Modify docking parameters via the INDOCK file: `DOCK38_scripts/modify_indock.sh`
   - Dock a dataset of small molecule ligands to each receptor: `DOCK38_scripts/batchdock_tranch.sh`
