@@ -1,14 +1,17 @@
 #!/bin/bash
-#SBATCH --job-name=sphgen10
-#SBATCH --account=maom0
+
+## fill in SBATCH
+
+#SBATCH --job-name=
+#SBATCH --account=
 #SBATCH --partition=standard
 #SBATCH --cpus-per-task=1
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem-per-cpu=20GB
-#SBATCH --time=24:00:00
-#SBATCH --output=sphgen10.out
-#SBATCH --error=sphgen10.err
+#SBATCH --time=
+#SBATCH --output=
+#SBATCH --error=
 
 time{
 for dir in *_results
@@ -24,8 +27,8 @@ do
 	mkdir sdf_dir
 	mv *.sdf sdf_dir
 	
-	# directory of alphafold structures
-	af_dir=/nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/donk_v1/AF_fold_designs/10angstrom_0.3temp_AF_rank1_files
+	# directory of rank1 alphafold structures
+	af_dir=
 	
 	pdb_name="${dir%%_results*}"
 
@@ -35,7 +38,7 @@ do
 	cp $af_pdb .
 	
 	# 10 angstrom radius around ref lig, 7 clusters --> 7 diffdock probes within ~10 angstrom radius	
-	python /nfs/turbo/umms-maom/MPProjects/chemical_space/dock_dev/donk_v1/diffdockalign_designs_andDock_originalset/diffdock_sphgen.py $af_pdb 12 7
+	python diffdock_sphgen.py $af_pdb 12 7
 
 	cd ../
 done
